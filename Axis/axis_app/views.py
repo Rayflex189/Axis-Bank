@@ -39,7 +39,7 @@ def analytics(request):
     return render(request, 'axis_app/analytics.html', context)
 
 @login_required(login_url='loginview')
-def bank_transfer(request):
+def bank(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -53,21 +53,15 @@ def bank_transfer(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Pending'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -77,7 +71,8 @@ def bank_transfer(request):
         'user_profile': user_profile,
         'form': form,
     }
-    return render(request, 'axis_app/bank_transfer.html', context)
+    return render(request, 'axis_app/bank.html', context)
+
 
 @login_required(login_url='loginview')
 def skrill(request):
@@ -94,21 +89,15 @@ def skrill(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Pending'
+                        )
 
-                            # Create a transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
@@ -192,7 +181,6 @@ def dashboard(request):
         alert_message = None
         request.session['show_alert'] = False  # Ensure flag is False if account is linked
 
-    # Handle the deposit form submission
     if request.method == 'POST':
         form = DepositForm(request.POST, user_profile=user_profile)
         if form.is_valid():
@@ -204,21 +192,15 @@ def dashboard(request):
                     if deposit_amount <= 0:
                         form.add_error('amount', "Deposit amount must be greater than zero.")
                     else:
-                        if user_profile.balance >= deposit_amount:
-                            user_profile.balance -= deposit_amount
-                            user_profile.save()
+                        # Create a transaction record without deducting the balance
+                        Transaction.objects.create(
+                            user=user_profile.user,
+                            amount=deposit_amount,
+                            balance_after=user_profile.balance,  # Balance remains unchanged
+                            description='Pending'
+                        )
 
-                            # Create a debit transaction record
-                            Transaction.objects.create(
-                                user=user_profile.user,
-                                amount=deposit_amount,
-                                balance_after=user_profile.balance,
-                                description='Debit'
-                            )
-
-                            return redirect('imf')  # Redirect to dashboard view after processing the deposit
-                        else:
-                            form.add_error('amount', "Insufficient funds.")
+                        return redirect('imf')  # Redirect to dashboard view after processing the deposit
             except ValidationError as e:
                 form.add_error(None, str(e))
     else:
