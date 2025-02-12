@@ -39,7 +39,7 @@ def analytics(request):
     return render(request, 'axis_app/analytics.html', context)
 
 @login_required(login_url='loginview')
-def bank(request): 
+def bank_transfer(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
     if request.method == 'POST':
@@ -71,7 +71,7 @@ def bank(request):
         'user_profile': user_profile,
         'form': form,
     }
-    return render(request, 'axis_app/bank.html', context)
+    return render(request, 'axis_app/bank_transfer.html', context)
 
 
 @login_required(login_url='loginview')
