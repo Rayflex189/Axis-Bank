@@ -16,10 +16,10 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'axis_bank_dbs',
-        'USER': 'axis_bank_dbs_user',
-        'PASSWORD': 'iDrB9NoD1wzys0SwdqW81gwLvxovzjpi',
-        'HOST': 'dpg-cul1vklumphs73bki24g-a.oregon-postgres.render.com',  # Check this
+        'NAME': 'axis_bank_dbs_j84s',
+        'USER': 'axis_bank_dbs_j84s',
+        'PASSWORD': 'eBCtIP5gpfPKfKkE58uDiXyy8kwNEtBc',
+        'HOST': 'dpg-cva2vi9c1ekc738pjvh0-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
     },
      'OPTIONS': {
