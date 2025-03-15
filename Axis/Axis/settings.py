@@ -17,7 +17,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'axis_bank_dbs_j84s',
-        'USER': 'axis_bank_dbs_j84s',
+        'USER': 'axis_bank_dbs_j84s_user',
         'PASSWORD': 'eBCtIP5gpfPKfKkE58uDiXyy8kwNEtBc',
         'HOST': 'dpg-cva2vi9c1ekc738pjvh0-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
