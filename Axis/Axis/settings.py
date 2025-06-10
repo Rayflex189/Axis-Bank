@@ -10,24 +10,31 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from pathlib import Path
+
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="dlzn0moho",
+    api_key="563396395915366",
+    api_secret="pCSSrLNvxfFSEzY4ZnaOiF5u93o"
+)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'axis_bank_dbs_j84s',
-        'USER': 'axis_bank_dbs_j84s_user',
-        'PASSWORD': 'eBCtIP5gpfPKfKkE58uDiXyy8kwNEtBc',
-        'HOST': 'dpg-cva2vi9c1ekc738pjvh0-a.oregon-postgres.render.com',  # Check this
-        'PORT': '5432',
-    },
-     'OPTIONS': {
-            'sslmode': 'require',
-        },
+        'NAME': 'postgres',
+        'USER': 'postgres.wytptuxipcyecdkigvqc',
+        'PASSWORD': 'jDDDVncuFftqnyKI',
+        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+        'PORT': '6543',  # PgBouncer port
+        'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
+    }
 }
-
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
