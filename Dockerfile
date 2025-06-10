@@ -22,14 +22,17 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy the full Django project
 COPY Axis/ /app/
 
-# Run Django setup commands
+# Run collectstatic and migrations during build (optional, but you can also migrate at startup)
 RUN python manage.py collectstatic --no-input
 RUN python manage.py makemigrations
 RUN python manage.py migrate
-RUN python manage.py create_admin
+
+# Copy startup script into container
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
 
 # Expose port
 EXPOSE 2012
 
-# Start server
-CMD ["gunicorn", "Axis.wsgi:application", "--bind", "0.0.0.0:2012"]
+# Use startup script as entrypoint to run create_admin then start server
+CMD ["/app/start.sh"]
