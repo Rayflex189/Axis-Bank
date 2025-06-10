@@ -16,11 +16,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install Python dependencies
-COPY wealthbridge/requirements.txt .
+COPY Axis/requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy the full Django project
-COPY wealthbridge/ /app/
+COPY Axis/ /app/
 
 # Run Django setup commands
 RUN python manage.py collectstatic --no-input
@@ -29,7 +29,7 @@ RUN python manage.py migrate
 RUN python manage.py create_admin
 
 # Expose port
-EXPOSE 8000
+EXPOSE 2012
 
 # Start server
-CMD ["gunicorn", "wealthbridge.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "Axis.wsgi:application", "--bind", "0.0.0.0:2012"]
