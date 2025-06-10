@@ -49,7 +49,17 @@ SECRET_KEY = 'django-insecure-^)hb2(8rnlh=4s19#m0%@35)-87w#h5y(*s=(a1w%=xzh=@z%l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://axisbank.fly.dev"]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dlzn0moho',
+    'API_KEY': '563396395915366',
+    'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
+}
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://axisbank.fly.dev/",
+]
 
 
 # Application definition
