@@ -58,7 +58,7 @@ CLOUDINARY_STORAGE = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://axisbank.fly.dev/",
+    "https://axisbank.fly.dev",
 ]
 
 
@@ -73,6 +73,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'axis_app',
     'django.contrib.humanize',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -161,9 +163,8 @@ STATICFILES_DIRS = [
 # Define STATIC_ROOT to collect static files for production and staging
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/external_st/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/external_st')
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
