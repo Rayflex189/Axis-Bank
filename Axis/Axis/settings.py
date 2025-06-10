@@ -30,7 +30,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres.wytptuxipcyecdkigvqc',
         'PASSWORD': 'jDDDVncuFftqnyKI',
-        'HOST': 'aws-0-eu-central-1.pooler.supabase.com',
+        'HOST': 'aws-0-us-east-2.pooler.supabase.com',
         'PORT': '6543',  # PgBouncer port
         'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
     }
