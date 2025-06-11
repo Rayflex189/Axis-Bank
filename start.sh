@@ -8,4 +8,4 @@ python manage.py migrate
 python manage.py create_admin
 
 # Start Gunicorn server
-exec gunicorn Axis.wsgi:application --bind 0.0.0.0:2012
+exec gunicorn Axis.wsgi:application --bind 0.0.0.0:8888
