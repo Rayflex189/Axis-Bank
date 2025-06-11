@@ -32,7 +32,7 @@ COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
 # Expose port
-EXPOSE 2012
+EXPOSE 8888
 
 # Use startup script as entrypoint to run create_admin then start server
 CMD ["/app/start.sh"]
