@@ -47,9 +47,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^)hb2(8rnlh=4s19#m0%@35)-87w#h5y(*s=(a1w%=xzh=@z%l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True
 
-ALLOWED_HOSTS = ["axis-bank.fly.dev"]
+ALLOWED_HOSTS = ["axisbank.fly.dev"]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
@@ -58,7 +58,7 @@ CLOUDINARY_STORAGE = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://axis-bank.fly.dev",
+    "https://axisbank.fly.dev",
 ]
 
 
