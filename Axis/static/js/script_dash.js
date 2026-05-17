@@ -170,3 +170,25 @@ document.querySelectorAll('.custom_dp, .custom_tf, .btn-primary').forEach(button
         }
     });
 });
+function copyMainAccountNumber() {
+    const accountNumberSpan = document.getElementById('mainAccountNumber');
+    const accountNumber = accountNumberSpan.innerText;
+    
+    if (accountNumber && accountNumber !== "Not available") {
+        navigator.clipboard.writeText(accountNumber).then(() => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'copy-tooltip';
+            tooltip.innerText = 'Copied!';
+            document.body.appendChild(tooltip);
+            
+            const icon = event.target;
+            const rect = icon.getBoundingClientRect();
+            tooltip.style.left = rect.left - 20 + 'px';
+            tooltip.style.top = rect.top - 30 + 'px';
+            
+            setTimeout(() => {
+                tooltip.remove();
+            }, 1500);
+        });
+    }
+}
