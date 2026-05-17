@@ -31,6 +31,35 @@ html, body {
     line-height: 1.5;
 }
 
+/* Account number styling */
+.account-number {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.account-number span {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.account-info {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    backdrop-filter: blur(4px);
+}
+
+/* Make copy icon more touch-friendly on mobile */
+@media (max-width: 768px) {
+    .copy-icon {
+        padding: 0.25rem;
+        font-size: 1rem;
+    }
+}
+
 /* Import Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
