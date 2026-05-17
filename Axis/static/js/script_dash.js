@@ -153,4 +153,20 @@ translateIcon.addEventListener('mouseover', () => {
 // Reset animation when mouse leaves
 translateIcon.addEventListener('mouseleave', () => {
     translateIcon.style.animation = '';
+}); 
+// Add loading state to buttons
+document.querySelectorAll('.custom_dp, .custom_tf, .btn-primary').forEach(button => {
+    button.addEventListener('click', function(e) {
+        if (this.closest('form')) {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Reset after 3 seconds (or let form submission handle it)
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+            }, 3000);
+        }
+    });
 });
