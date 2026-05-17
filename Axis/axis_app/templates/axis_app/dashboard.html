@@ -153,6 +153,35 @@ html, body {
 
 .account-number {
     animation: fadeIn 1s ease;
+} 
+
+/* Account number styling */
+.account-number {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.account-number span {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.account-info {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    backdrop-filter: blur(4px);
+}
+
+/* Make copy icon more touch-friendly on mobile */
+@media (max-width: 768px) {
+    .copy-icon {
+        padding: 0.25rem;
+        font-size: 1rem;
+    }
 }
 
 @keyframes fadeIn {
@@ -847,16 +876,24 @@ input:focus {
 
 
         <div class="box1">
-            <div style="display: flex; justify-content: space-between;">
-                <div class="part1">
-                    <div class="Welcome">
-                        <p>
-                            {{user_profile.first_name}} {{user_profile.last_name}}
-                        </p>
-                        <img src="{{user_profile.profile_pic.url}}" class="profile-img" alt="Profile Picture">
-                    </div>
-                </div>
-
+    <div style="display: flex; justify-content: space-between;">
+        <div class="part1">
+            <div class="Welcome">
+                <p>
+                    {{ user_profile.first_name }} {{ user_profile.last_name }}
+                </p>
+                <img src="{{ user_profile.profile_pic.url }}" class="profile-img" alt="Profile Picture">
+            </div>
+        </div>
+        <div class="account-info" style="text-align: right;">
+            <small style="opacity: 0.8; font-size: 0.7rem;">Account Number</small>
+            <div>
+                <span id="mainAccountNumber" style="font-weight: 600; letter-spacing: 1px;">{{ user_profile.account_number|default:"Not available" }}</span>
+                <i class="fas fa-copy copy-icon" onclick="copyMainAccountNumber()" style="cursor: pointer; margin-left: 8px; color: #fff; font-size: 0.8rem;"></i>
+            </div>
+        </div>
+    </div>
+    <!-- Rest of your box1 content -->
                <i class="fas fa-plus"></i>
             </div>
             <hr>
